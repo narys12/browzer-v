@@ -1,7 +1,9 @@
 <template>
   <v-app>
-    <router-view></router-view>
-    <v-bottom-nav absolute shift :value="true" :active.sync="e2" :color="computedColor">
+    <v-content class="text-md-center">
+      <router-view></router-view>
+    </v-content>
+    <v-bottom-nav shift :value="true" :active.sync="e2">
       <v-btn dark to="/home">
         <span>Home</span>
         <v-icon>home</v-icon>
@@ -22,20 +24,14 @@
 export default {
   data () {
     return {
-      e2: 0
-    }
-  },
-  computed: {
-    computedColor () {
-      switch (this.e2) {
-        case 0:
-          return 'blue-grey'
-        case 1:
-          return 'teal'
-        case 2:
-          return 'brown'
-      }
+      e2: 3
     }
   }
 }
 </script>
+
+<style>
+main > div > .layout {
+  margin-bottom: 60px;
+}
+</style>

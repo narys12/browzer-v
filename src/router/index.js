@@ -1,17 +1,20 @@
 import Router from 'vue-router'
 import Vue from 'vue'
 
-Vue.use(Router)
-
 function load (component) {
-  return () => System.import(`@/${component}.vue`)
+  return () => System.import(`@/components/${component}`)
 }
+
+Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/home',
+      redirect: '/home'
+    },
+    {
+      path: '/home',
       name: 'Home',
       component: load('MemoryList')
     }
