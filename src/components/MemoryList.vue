@@ -16,21 +16,35 @@
                     <strong>{{ memory.user.displayName }}</strong>
                   </v-flex>
                   <v-flex xs12>
-                    <v-icon color="blue">place</v-icon>
-                    {{ memory.location.state }} . {{ memory.location.city }} . {{ memory.location.place }}
+                    {{ memory.date | moment("from") }}
                   </v-flex>
                 </v-layout>
               </v-flex>
             </v-layout>
           </v-card-title>
-          <v-card-media :src="memory.gallery[0]"
-            height="200px">
-          </v-card-media>
-          <v-card-title class="grey--text">
-            {{ memory.date | moment("from") }}
-          </v-card-title>
+          <v-flex xs12>
+            <v-card color="light-blue lighten-4" class="white--text">
+              <v-container fluid grid-list-lg>
+                <v-layout row>
+                  <v-flex xs7>
+                    <div>
+                      <div class="headline">Halycon Days</div>
+                      <div>Ellie Goulding</div>
+                    </div>
+                  </v-flex>
+                  <v-flex xs5>
+                      <v-card-media
+                        :src="memory.gallery.main.src"
+                        height="125px"
+                        contain
+                      ></v-card-media>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+            </v-card>
+          </v-flex>
           <v-card-actions class="white">
-            <v-icon color="red" v-if="memory.likes.includes(memory.user.id)">thumb_up</v-icon>
+            <v-icon color="red lighten-2" v-if="memory.likes.includes(memory.user.id)">thumb_up</v-icon>
             <v-icon v-else>thumb_up</v-icon>
             {{ memory.likes.length }}
             <v-spacer></v-spacer>
@@ -38,7 +52,7 @@
             {{ memory.commentsCount }}
             <v-spacer></v-spacer>
             <v-icon>view_module</v-icon>
-            {{ memory.gallery.length }}
+            {{ memory.gallery.count }}
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -60,17 +74,19 @@
               name: 'Naris Raz',
               avatar: 'https://cmkt-image-prd.global.ssl.fastly.net/0.1.0/ps/2698155/1160/772/m1/fpnw/wm0/supertramp-2017-.jpg?1494963184&s=0b92c85a15996f9dd8f0c4eee8c16f07'
             },
-            location: {
-              place: 'Vieux Port',
-              country: '',
-              city: 'Marseille',
-              state: 'France'
-            },
             date: Date.now(),
-            gallery: [
-              'https://imghtlak.mmtcdn.com/blog/sites/default/files/road-trip-indian-license.jpg',
-              'https://pre00.deviantart.net/e478/th/pre/i/2012/191/f/7/trip_to_dabravino___the_path_in_the_forest_by_thegoldeagle-d56olmu.jpg'
-            ],
+            gallery: {
+              main: {
+                src: 'https://imghtlak.mmtcdn.com/blog/sites/default/files/road-trip-indian-license.jpg',
+                location: {
+                  place: 'Vieux Port',
+                  country: '',
+                  city: 'Marseille',
+                  state: 'France'
+                }
+              },
+              count: 1
+            },
             likes: [
               '1', '2'
             ],
@@ -84,17 +100,20 @@
               name: 'Naris Raz',
               avatar: 'https://cmkt-image-prd.global.ssl.fastly.net/0.1.0/ps/2698155/1160/772/m1/fpnw/wm0/supertramp-2017-.jpg?1494963184&s=0b92c85a15996f9dd8f0c4eee8c16f07'
             },
-            location: {
-              place: 'Vieux Port',
-              country: '',
-              city: 'Marseille',
-              state: 'France'
+            gallery: {
+              main: {
+                src: 'https://pre00.deviantart.net/e478/th/pre/i/2012/191/f/7/trip_to_dabravino___the_path_in_the_forest_by_thegoldeagle-d56olmu.jpg',
+                location: {
+                  place: 'Tsy aiko',
+                  country: '',
+                  city: 'Toamasina',
+                  state: 'Madagascar'
+                }
+              },
+              count: 1
             },
             description: 'Cool pics from my trip in France',
             date: Date.now(),
-            gallery: [
-              'https://pre00.deviantart.net/e478/th/pre/i/2012/191/f/7/trip_to_dabravino___the_path_in_the_forest_by_thegoldeagle-d56olmu.jpg'
-            ],
             likes: [
               '3'
             ],
